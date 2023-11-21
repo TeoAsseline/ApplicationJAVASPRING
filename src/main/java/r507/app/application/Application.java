@@ -11,7 +11,7 @@ public class Application {
 
 	@RequestMapping("/bonjour")
     String home() {
-        return "Bonjour le monde !";
+        return "HELLO WORLD - Bonjour le monde !";
     }
 
 	public static void main(String[] args) {
