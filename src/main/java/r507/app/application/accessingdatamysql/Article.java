@@ -1,15 +1,12 @@
 package r507.app.application.accessingdatamysql;
-import java.util.Date;
-import java.util.List;
-import java.util.Optional;
 
+import java.util.Date;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 
 @Entity // This tells Hibernate to make a table out of this class
