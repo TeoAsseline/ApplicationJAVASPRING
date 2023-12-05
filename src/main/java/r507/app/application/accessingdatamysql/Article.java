@@ -1,5 +1,6 @@
 package r507.app.application.accessingdatamysql;
 import java.util.Date;
+import java.util.List;
 import java.util.Optional;
 
 import javax.persistence.CascadeType;
@@ -8,6 +9,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 
 @Entity // This tells Hibernate to make a table out of this class
@@ -57,5 +59,12 @@ public class Article {
   public Article(Auteur auteur) {
       this.auteur = auteur;
   }
-  
+
+  public Auteur getAuteur() {
+      return auteur;
+  }
+
+  public void setAuteur(Auteur auteur) {
+      this.auteur = auteur;
+  }
 }
