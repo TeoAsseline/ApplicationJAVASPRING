@@ -5,8 +5,10 @@ import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.MapsId;
+import javax.persistence.Table;
 
 @Entity
+@Table(name="like_dislike")
 class LikeDislike {
 
     @EmbeddedId
@@ -28,12 +30,13 @@ class LikeDislike {
     // hashcode and equals implementation
     public LikeDislike() {
     }
-    public LikeDislike(Integer integer, Integer integer2, int i) {
-        this.id=new LikeDislikeKey(integer,integer2);
+    public 
+    LikeDislike(Integer article, Integer auteur, int i) {
+        this.id=new LikeDislikeKey(article,auteur);
         this.likedislike=i;
     }
-    public LikeDislike(Integer integer, Integer integer2) {
-        this.id=new LikeDislikeKey(integer,integer2);
+    public LikeDislike(Integer article, Integer auteur) {
+        this.id=new LikeDislikeKey(article,auteur);
     }
     public Integer getArticleId() {
         return this.article.getId();
@@ -46,5 +49,11 @@ class LikeDislike {
     }
     public void setLikeDislike(Integer likedislike) {
         this.likedislike=likedislike;
+    }
+    public void setArticle(Article article) {
+        this.article=article;
+    }
+    public void setAuteur(Auteur auteur) {
+        this.auteur=auteur;
     }
 }

@@ -13,7 +13,7 @@ public class Application {
     String home() {
         return "HELLO WORLD - Bonjour le monde !";
     }
-
+	
 	public static void main(String[] args) {
 		SpringApplication.run(Application.class, args);
 	}

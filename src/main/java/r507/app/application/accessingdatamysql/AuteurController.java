@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -29,11 +30,14 @@ public class AuteurController {
     return "Saved";
   }
 
-  @PutMapping(path="/modify") // Map ONLY POST Requests
-  public @ResponseBody String modifyAuteur (@RequestBody ModifyAuteur modifyAuteur) {
+  @PutMapping(path="/modify/{id}") // Map ONLY POST Requests
+  public @ResponseBody String modifyAuteur (@PathVariable Integer id,@RequestBody ModifyAuteur modifyAuteur) {
     // @ResponseBody means the returned String is the response, not a view name
     // @RequestParam means it is a parameter from the GET or POST request
-    Auteur n = auteurRepository.findById(modifyAuteur.getId()).get();
+    if(!auteurRepository.findById(id).isPresent()){
+      return "Auteur not found";
+    }
+    Auteur n = auteurRepository.findById(id).get();
     if(modifyAuteur.getName()!=null){
       n.setName(modifyAuteur.getName());
     }
@@ -47,11 +51,14 @@ public class AuteurController {
     return "Modified";
   }
 
-  @DeleteMapping(path="/delete") // Map ONLY POST Requests
-  public @ResponseBody String deleteAuteur (@RequestBody DeleteAuteur deleteAuteur) {
+  @DeleteMapping(path="/delete/{id}") // Map ONLY POST Requests
+  public @ResponseBody String deleteAuteur (@PathVariable Integer id) {
     // @ResponseBody means the returned String is the response, not a view name
     // @RequestParam means it is a parameter from the GET or POST request
-    auteurRepository.delete(auteurRepository.findById(deleteAuteur.getId()).get());
+    if(!auteurRepository.findById(id).isPresent()){
+      return "Auteur not found";
+    }
+    auteurRepository.delete(auteurRepository.findById(id).get());
     return "Deleted";
   }
 
